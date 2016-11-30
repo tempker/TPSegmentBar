@@ -27,7 +27,7 @@
     [self.view addSubview:segmentBar];
     
 
-    segmentBar.titleItems = @[@"专辑", @"声音", @"下载中"];
+    segmentBar.titleItems = @[@"专辑", @"声音", @"下载中", @"声音", @"下载中", @"声音", @"下载中"];
 }
 
 

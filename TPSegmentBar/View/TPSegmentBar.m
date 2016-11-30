@@ -8,13 +8,13 @@
 
 #import "TPSegmentBar.h"
 #import "UIView+Cateory.h"
+
+
+#define KBtnMiniMargin 30
+
 @interface TPSegmentBar ()
-
-
 /**  滚动视图  */
 @property (nonatomic,strong) UIScrollView *contentView;
-
-
 
 /**btn数组   */
 @property (nonatomic,strong) NSMutableArray<UIButton *>*btnArray;
@@ -68,8 +68,25 @@
     
     self.contentView.frame = self.bounds;
     
+    //计算margin
+    
+    //总的btn宽度
+    CGFloat totoalBtnWith = 0;
+    
+    for (UIButton *btn in self.btnArray) {
+
+        [btn sizeToFit];
+        totoalBtnWith += btn.width;
+    }
+
+    CGFloat btnMagin = (self.width - totoalBtnWith) / (self.btnArray.count + 1);
+    if (btnMagin < KBtnMiniMargin) {
+        
+        btnMagin = KBtnMiniMargin;
+    }
+    
     //layoutBtn
-    CGFloat lastX = 0;
+    CGFloat lastX = btnMagin;
     for (UIButton *btn in self.btnArray) {
         
         [btn sizeToFit];
@@ -78,7 +95,7 @@
         
         btn.x = lastX;
 
-        lastX += btn.width;
+        lastX += btn.width + btnMagin;
     }
     
     self.contentView.contentSize = CGSizeMake(lastX, 0);
