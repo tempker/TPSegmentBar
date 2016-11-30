@@ -13,12 +13,18 @@
 #define KBtnMiniMargin 30
 
 @interface TPSegmentBar ()
+{
+    
+    UIButton *_lastBtn;
+}
 /**  滚动视图  */
 @property (nonatomic,strong) UIScrollView *contentView;
 
 /**btn数组   */
 @property (nonatomic,strong) NSMutableArray<UIButton *>*btnArray;
 
+/** 指示器   */
+@property (nonatomic,strong) UIView *indicatorView;
 @end
 
 
@@ -49,6 +55,9 @@
         UIButton *titleBtn = [[UIButton alloc]init];
         
         [titleBtn setTitle:titleItem forState:UIControlStateNormal];
+        [titleBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
+        [titleBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [titleBtn setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
 
         [self.contentView addSubview:titleBtn];
         [self.btnArray addObject:titleBtn];
@@ -59,8 +68,6 @@
     [self layoutIfNeeded];
     
 }
-
-
 
 -(void)layoutSubviews{
     
@@ -102,6 +109,35 @@
     
 }
 
+
+#pragma mark - 点击事件
+-(void)btnClick:(UIButton*)btn{
+    _lastBtn.selected = NO;
+    btn.selected = YES;
+    _lastBtn = btn;
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        self.indicatorView.width = btn.width;
+        self.indicatorView.centerX = btn.centerX;
+    }];
+
+    //记录点击btnscrollView 需要滚动到的相应的位置
+    CGFloat scrollViewX = btn.centerX - self.contentView.width *0.5;
+    
+    if (scrollViewX < 0 ) {
+        scrollViewX = 0;
+    }
+    if (scrollViewX > self.contentView.contentSize.width - self.contentView.width) {
+        scrollViewX = self.contentView.contentSize.width - self.contentView.width;
+    }
+    //偏移数据过小的话直接return
+    if (scrollViewX < 3) {
+        return;
+    }
+    //进行滚动
+    [self.contentView setContentOffset:CGPointMake(scrollViewX, 0) animated:YES];
+    
+}
 #pragma mark - 懒加载
 -(NSMutableArray<UIButton *> *)btnArray{
     
@@ -111,9 +147,17 @@
     return _btnArray;
 }
 
-
-
-
+-(UIView *)indicatorView{
+    
+    CGFloat indicatorH = 2;
+    if (!_indicatorView) {
+        
+        _indicatorView = [[UIView alloc]initWithFrame:CGRectMake(0, self.height - indicatorH, 0, indicatorH)];
+        _indicatorView.backgroundColor = [UIColor redColor];
+        [self.contentView addSubview:_indicatorView];
+    }
+    return _indicatorView;
+}
 
 
 @end
