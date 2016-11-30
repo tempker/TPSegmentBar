@@ -10,4 +10,9 @@
 
 @interface TPSegmentBar : UIView
 
++(instancetype)segmentBarWithFrame:(CGRect)frame;
+
+/** title数组   */
+@property (nonatomic,strong) NSArray <NSString *>*titleItems;
+
 @end

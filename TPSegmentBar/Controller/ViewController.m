@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-
+#import "TPSegmentBar.h"
+#import "UIView+Cateory.h"
 @interface ViewController ()
 
 @end
@@ -17,6 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    CGRect frame = CGRectMake( 0, 20, self.view.width, 30);
+    TPSegmentBar *segmentBar = [TPSegmentBar segmentBarWithFrame:frame];
+    
+    segmentBar.backgroundColor = [UIColor redColor];
+    [self.view addSubview:segmentBar];
+    
+
+    segmentBar.titleItems = @[@"专辑", @"声音", @"下载中"];
 }
 
 
