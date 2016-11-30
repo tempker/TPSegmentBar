@@ -16,6 +16,7 @@
 		E34AFF371DEE82D10085615D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E34AFF361DEE82D10085615D /* ViewController.m */; };
 		E34AFF3B1DEE82DD0085615D /* TPSegmentBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E34AFF3A1DEE82DD0085615D /* TPSegmentBar.m */; };
 		E34AFF3E1DEEA8A50085615D /* UIView+Cateory.m in Sources */ = {isa = PBXBuildFile; fileRef = E34AFF3D1DEEA8A50085615D /* UIView+Cateory.m */; };
+		E34AFF431DEEC3FC0085615D /* TPSegmentBarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E34AFF421DEEC3FC0085615D /* TPSegmentBarVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		E34AFF3A1DEE82DD0085615D /* TPSegmentBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSegmentBar.m; sourceTree = "<group>"; };
 		E34AFF3C1DEEA8A50085615D /* UIView+Cateory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Cateory.h"; sourceTree = "<group>"; };
 		E34AFF3D1DEEA8A50085615D /* UIView+Cateory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Cateory.m"; sourceTree = "<group>"; };
+		E34AFF411DEEC3FC0085615D /* TPSegmentBarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSegmentBarVC.h; sourceTree = "<group>"; };
+		E34AFF421DEEC3FC0085615D /* TPSegmentBarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSegmentBarVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				E34AFF3A1DEE82DD0085615D /* TPSegmentBar.m */,
 				E34AFF3C1DEEA8A50085615D /* UIView+Cateory.h */,
 				E34AFF3D1DEEA8A50085615D /* UIView+Cateory.m */,
+				E34AFF411DEEC3FC0085615D /* TPSegmentBarVC.h */,
+				E34AFF421DEEC3FC0085615D /* TPSegmentBarVC.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E34AFF431DEEC3FC0085615D /* TPSegmentBarVC.m in Sources */,
 				E34AFF371DEE82D10085615D /* ViewController.m in Sources */,
 				E34AFF3B1DEE82DD0085615D /* TPSegmentBar.m in Sources */,
 				E34AFF331DEE82C80085615D /* main.m in Sources */,

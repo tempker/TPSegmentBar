@@ -34,11 +34,6 @@
     
     TPSegmentBar *segmentBar = [[TPSegmentBar alloc]initWithFrame:frame];
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:frame];
-    scrollView.showsHorizontalScrollIndicator = NO;
-    [segmentBar addSubview:scrollView];
-    segmentBar.contentView = scrollView;
-    
     return segmentBar;
     
 }
@@ -109,6 +104,15 @@
     }
     
     self.contentView.contentSize = CGSizeMake(lastX, 0);
+    
+    if (self.btnArray.count == 0) {
+        return;
+    }
+    UIButton *btn = self.btnArray[self.selectIndex];
+    
+    self.indicatorView.width = btn.width;
+    self.indicatorView.centerX = btn.centerX;
+    self.indicatorView.y = self.height - self.indicatorView.height;
 }
 
 
@@ -116,7 +120,7 @@
     
     
     //数据过滤
-    if (self.btnArray.count == 0 || selectIndex < 0 || selectIndex >self.btnArray.count - 1) {
+    if (self.btnArray.count == 0 || selectIndex < 0 || selectIndex > self.btnArray.count - 1) {
         return;
     }
     _selectIndex = selectIndex;
@@ -135,6 +139,8 @@
         [self.delegate segmentBar:self DidselectIndexFrom:_lastBtn.tag toIndex:btn.tag];
     }
     
+    _selectIndex = btn.tag;
+    
     _lastBtn.selected = NO;
     btn.selected = YES;
     _lastBtn = btn;
@@ -145,7 +151,7 @@
     }];
 
     //记录点击btnscrollView 需要滚动到的相应的位置
-    CGFloat scrollViewX = btn.centerX - self.contentView.width *0.5;
+    CGFloat scrollViewX = btn.centerX - self.contentView.width * 0.5;
     
     if (scrollViewX < 0 ) {
         scrollViewX = 0;
@@ -154,9 +160,11 @@
         scrollViewX = self.contentView.contentSize.width - self.contentView.width;
     }
     //偏移数据过小的话直接return
-    if (scrollViewX < 3) {
-        return;
-    }
+//    if (scrollViewX < 3) {
+//        return;
+//    }
+    
+    
     //进行滚动
     [self.contentView setContentOffset:CGPointMake(scrollViewX, 0) animated:YES];
     
@@ -180,6 +188,15 @@
         [self.contentView addSubview:_indicatorView];
     }
     return _indicatorView;
+}
+
+- (UIScrollView *)contentView {
+    if (!_contentView) {
+        _contentView = [[UIScrollView alloc] init];
+        _contentView.showsHorizontalScrollIndicator = NO;
+        [self addSubview:_contentView];
+    }
+    return _contentView;
 }
 
 
