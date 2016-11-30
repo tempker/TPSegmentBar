@@ -49,11 +49,14 @@
     
     _titleItems = titleItems;
     
+    //删除之前添加的
+    [self.btnArray makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    self.btnArray = nil;
     
     for (NSString *titleItem in titleItems) {
         
         UIButton *titleBtn = [[UIButton alloc]init];
-        
+        titleBtn.tag = self.btnArray.count;
         [titleBtn setTitle:titleItem forState:UIControlStateNormal];
         [titleBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
         [titleBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
@@ -106,12 +109,32 @@
     }
     
     self.contentView.contentSize = CGSizeMake(lastX, 0);
-    
 }
 
 
+-(void)setSelectIndex:(NSInteger )selectIndex{
+    
+    
+    //数据过滤
+    if (self.btnArray.count == 0 || selectIndex < 0 || selectIndex >self.btnArray.count - 1) {
+        return;
+    }
+    _selectIndex = selectIndex;
+    
+    //根据外界传递过来的 进行btn的点击
+    UIButton *btn = self.btnArray[selectIndex];
+    
+    [self btnClick:btn];
+}
+
 #pragma mark - 点击事件
 -(void)btnClick:(UIButton*)btn{
+    
+    //代理传递
+    if ([self.delegate respondsToSelector:@selector(segmentBar:DidselectIndexFrom:toIndex:)]) {
+        [self.delegate segmentBar:self DidselectIndexFrom:_lastBtn.tag toIndex:btn.tag];
+    }
+    
     _lastBtn.selected = NO;
     btn.selected = YES;
     _lastBtn = btn;

@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TPSegmentBar;
+
+@protocol TPSegmentBarDelegate <NSObject>
+
+-(void)segmentBar:(TPSegmentBar *) SegmentBar DidselectIndexFrom:(NSInteger) fromIndex toIndex:(NSInteger )toIndex;
+
+@end
 
 @interface TPSegmentBar : UIView
 
@@ -14,5 +21,12 @@
 
 /** title数组   */
 @property (nonatomic,strong) NSArray <NSString *>*titleItems;
+
+/** delegate   */
+@property (nonatomic,weak) id<TPSegmentBarDelegate> delegate;
+
+
+/** index   */
+@property (nonatomic,assign) NSInteger selectIndex;
 
 @end
