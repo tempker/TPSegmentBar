@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C84473811DEFC1E400668B6A /* TPSegmentBarConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C84473801DEFC1E400668B6A /* TPSegmentBarConfig.m */; };
 		E34AFF1D1DEE80D50085615D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E34AFF1B1DEE80D50085615D /* Main.storyboard */; };
 		E34AFF1F1DEE80D50085615D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E34AFF1E1DEE80D50085615D /* Assets.xcassets */; };
 		E34AFF221DEE80D50085615D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E34AFF201DEE80D50085615D /* LaunchScreen.storyboard */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C844737F1DEFC1E400668B6A /* TPSegmentBarConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPSegmentBarConfig.h; sourceTree = "<group>"; };
+		C84473801DEFC1E400668B6A /* TPSegmentBarConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPSegmentBarConfig.m; sourceTree = "<group>"; };
 		E34AFF0F1DEE80D50085615D /* TPSegmentBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPSegmentBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E34AFF1C1DEE80D50085615D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E34AFF1E1DEE80D50085615D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -115,6 +118,8 @@
 				E34AFF3D1DEEA8A50085615D /* UIView+Cateory.m */,
 				E34AFF411DEEC3FC0085615D /* TPSegmentBarVC.h */,
 				E34AFF421DEEC3FC0085615D /* TPSegmentBarVC.m */,
+				C844737F1DEFC1E400668B6A /* TPSegmentBarConfig.h */,
+				C84473801DEFC1E400668B6A /* TPSegmentBarConfig.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				E34AFF371DEE82D10085615D /* ViewController.m in Sources */,
 				E34AFF3B1DEE82DD0085615D /* TPSegmentBar.m in Sources */,
 				E34AFF331DEE82C80085615D /* main.m in Sources */,
+				C84473811DEFC1E400668B6A /* TPSegmentBarConfig.m in Sources */,
 				E34AFF3E1DEEA8A50085615D /* UIView+Cateory.m in Sources */,
 				E34AFF311DEE82C80085615D /* AppDelegate.m in Sources */,
 			);

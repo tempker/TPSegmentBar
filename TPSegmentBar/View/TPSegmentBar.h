@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TPSegmentBarConfig.h"
 @class TPSegmentBar;
-
 @protocol TPSegmentBarDelegate <NSObject>
 
 -(void)segmentBar:(TPSegmentBar *) SegmentBar DidselectIndexFrom:(NSInteger) fromIndex toIndex:(NSInteger )toIndex;
@@ -28,6 +28,14 @@
 
 /** index   */
 @property (nonatomic,assign) NSInteger selectIndex;
+
+
+/**
+ 提供给外界改变config的接口
+
+ @param confingBlock  confingBlock
+ */
+-(void)upDateSegmentBarConfig:(void(^)(TPSegmentBarConfig *config))confingBlock;
 
 
 @end

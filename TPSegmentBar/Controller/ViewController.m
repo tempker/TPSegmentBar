@@ -15,7 +15,6 @@
 /** TPSegmentBar   */
 //@property (nonatomic,weak) TPSegmentBar *segmentBar;
 
-
 /**    */
 @property (nonatomic,strong) TPSegmentBarVC *segmentBarVC ;
 
@@ -49,13 +48,6 @@
 
 -(void)setUp{
     
-    
-    
-    
-    
-//    NSArray *arr = @[@"专辑"];
-    
-    
     NSArray *items = @[@"专辑", @"声音",@"精彩推荐", @"下载中", @"体育赛事", @"下载中", @"体育赛事"];
     
     UIViewController *vc1 = [UIViewController new];
@@ -80,8 +72,18 @@
     vc7.view.backgroundColor = [UIColor grayColor];
     [self.segmentBarVC setUpItems:items addChildController:@[vc1, vc2, vc3, vc4, vc5,vc6,vc7]];
     
+    [self.segmentBarVC.segmentBar upDateSegmentBarConfig:^(TPSegmentBarConfig *config) {
+        
+        config.segmentBarBackColor = [UIColor yellowColor];
+        config.itemNormalColor = [UIColor blackColor];
+        config.itemSelectColor = [UIColor greenColor];
+        config.itemFont = [UIFont systemFontOfSize:18];
+        config.indicatorHeight = 5;
+        config.indicatorColor = [UIColor redColor];
+        config.indicatorExtraW = 0;
+        
+    }];
     
-//    [self.segmentBarVC setUpItems:arr addChildController:@[vc1]];
 }
 
 #pragma mark - 懒加载

@@ -25,6 +25,9 @@
 
 /** 指示器   */
 @property (nonatomic,strong) UIView *indicatorView;
+
+/** config   */
+@property (nonatomic,strong) TPSegmentBarConfig *config;
 @end
 
 
@@ -38,6 +41,14 @@
     
 }
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = self.config.segmentBarBackColor;
+    }
+    return self;
+}
 #pragma mark - UI
 
 -(void)setTitleItems:(NSArray<NSString *> *)titleItems{
@@ -54,8 +65,9 @@
         titleBtn.tag = self.btnArray.count;
         [titleBtn setTitle:titleItem forState:UIControlStateNormal];
         [titleBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
-        [titleBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [titleBtn setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
+        [titleBtn setTitleColor:self.config.itemNormalColor forState:UIControlStateNormal];
+        [titleBtn setTitleColor:self.config.itemSelectColor forState:UIControlStateSelected];
+        titleBtn.titleLabel.font = self.config.itemFont;
 
         [self.contentView addSubview:titleBtn];
         [self.btnArray addObject:titleBtn];
@@ -130,6 +142,26 @@
     [self btnClick:btn];
 }
 
+-(void)upDateSegmentBarConfig:(void(^)(TPSegmentBarConfig *config))confingBlock{
+    
+    if (confingBlock) {
+        confingBlock(self.config);
+    }
+    
+    
+    self.backgroundColor = self.config.segmentBarBackColor;
+    for (UIButton *btn in self.btnArray) {
+        [btn setTitleColor:self.config.itemNormalColor forState:UIControlStateNormal];
+        [btn setTitleColor:self.config.itemSelectColor forState:UIControlStateSelected];
+        btn.titleLabel.font = self.config.itemFont;
+    }
+    
+    // 指示器
+    self.indicatorView.backgroundColor = self.config.indicatorColor;
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+}
+
 #pragma mark - 点击事件
 -(void)btnClick:(UIButton*)btn{
     
@@ -145,7 +177,7 @@
     _lastBtn = btn;
     
     [UIView animateWithDuration:0.25 animations:^{
-        self.indicatorView.width = btn.width;
+        self.indicatorView.width = btn.width + self.config.indicatorExtraW * 2;
         self.indicatorView.centerX = btn.centerX;
     }];
 
@@ -194,6 +226,14 @@
         [self addSubview:_contentView];
     }
     return _contentView;
+}
+
+-(TPSegmentBarConfig *)config{
+    
+    if (!_config) {
+        _config = [[TPSegmentBarConfig alloc]init];
+    }
+    return _config;
 }
 
 
