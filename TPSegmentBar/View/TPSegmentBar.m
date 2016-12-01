@@ -74,7 +74,6 @@
     self.contentView.frame = self.bounds;
     
     //计算margin
-    
     //总的btn宽度
     CGFloat totoalBtnWith = 0;
     
@@ -163,8 +162,6 @@
 //    if (scrollViewX < 3) {
 //        return;
 //    }
-    
-    
     //进行滚动
     [self.contentView setContentOffset:CGPointMake(scrollViewX, 0) animated:YES];
     

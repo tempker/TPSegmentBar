@@ -10,6 +10,8 @@
 #import "TPSegmentBar.h"
 @interface TPSegmentBarVC : UIViewController
 
+/** segmentBar   */
+@property (nonatomic,strong) TPSegmentBar *segmentBar;
 
 /**
  添加标题及子控制器

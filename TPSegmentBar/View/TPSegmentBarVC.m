@@ -10,10 +10,6 @@
 #import "UIView+Cateory.h"
 @interface TPSegmentBarVC ()<TPSegmentBarDelegate,UIScrollViewDelegate>
 
-/** segmentBar   */
-@property (nonatomic,strong) TPSegmentBar *segmentBar;
-
-
 /** scrollView   */
 @property (nonatomic,strong) UIScrollView *contentView;
 
@@ -26,29 +22,34 @@
     // Do any additional setup after loading the view.
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.contentView.contentSize = CGSizeMake(self.childViewControllers.count *self.view.width , 0);
+    if (self.segmentBar.superview == self.view) {
+        
+        self.contentView.contentSize = CGSizeMake(self.childViewControllers.count *self.view.width , 0);
+        
+        self.segmentBar.frame = CGRectMake(0, 60, self.view.width, 35);
+        
+        CGFloat contentViewY = self.segmentBar.y + self.segmentBar.height;
+        CGRect contentFrame = CGRectMake(0, contentViewY, self.view.width, self.view.height - contentViewY);
+        self.contentView.frame = contentFrame;
+    }
     
-    self.segmentBar.frame = CGRectMake(0, 60, self.view.width, 35);
-    
-    CGFloat contentViewY = self.segmentBar.y + self.segmentBar.height;
-    CGRect contentFrame = CGRectMake(0, contentViewY, self.view.width, self.view.height - contentViewY);
-    self.contentView.frame = contentFrame;
+    return;
 }
 
 #pragma mark - layout
--(void)viewWillLayoutSubviews{
-    
-    [super viewWillLayoutSubviews];
-    
-    self.contentView.contentSize = CGSizeMake(self.childViewControllers.count *self.view.width , 0);
-    
-    self.segmentBar.frame = CGRectMake(0, 60, self.view.width, 35);
-    
-    CGFloat contentViewY = self.segmentBar.y + self.segmentBar.height;
-    CGRect contentFrame = CGRectMake(0, contentViewY, self.view.width, self.view.height - contentViewY);
-    self.contentView.frame = contentFrame;
-    
-}
+//-(void)viewWillLayoutSubviews{
+//    
+//    [super viewWillLayoutSubviews];
+//    
+//    self.contentView.contentSize = CGSizeMake(self.childViewControllers.count *self.view.width , 0);
+//    
+//    self.segmentBar.frame = CGRectMake(0, 60, self.view.width, 35);
+//    
+//    CGFloat contentViewY = self.segmentBar.y + self.segmentBar.height;
+//    CGRect contentFrame = CGRectMake(0, contentViewY, self.view.width, self.view.height - contentViewY);
+//    self.contentView.frame = contentFrame;
+//    
+//}
 
 
 
